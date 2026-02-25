@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "moduleResolution": "Bundler",
+    "incremental": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./*"],
+      "@buildrlab/shared": ["../../packages/shared/src/index.ts"],
+      "@buildrlab/shared/*": ["../../packages/shared/src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noPropertyAccessFromIndexSignature": false,
+    "types": ["node", "aws-lambda"]
+  },
+  "include": ["src", "tests"]
+}

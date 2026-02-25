@@ -1,0 +1,35 @@
+{
+  "name": "buildrlab-community-saas",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.3",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r --topological build && pnpm -r --topological typecheck",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter @buildrlab/web test:e2e",
+    "format": "pnpm -r format"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^2.1.2",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "^16.0.0",
+    "playwright": "^1.50.1",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.17.0",
+    "globals": "^15.14.0",
+    "vitest": "^2.1.2"
+  }
+}

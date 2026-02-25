@@ -1,0 +1,23 @@
+{
+  "name": "@buildrlab/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/dev-server.ts",
+    "build": "tsup",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.744.0",
+    "@aws-sdk/lib-dynamodb": "^3.744.0",
+    "@buildrlab/shared": "workspace:*",
+    "jose": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "tsx": "^4.19.2"
+  }
+}

@@ -1,0 +1,7 @@
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="178" height="38" rx="10" fill="#0B1B2B" stroke="#1E3A5F" stroke-width="2"/>
+  <circle cx="22" cy="20" r="8" fill="#2DD4BF"/>
+  <path d="M22 12L26.5 20L22 28L17.5 20L22 12Z" fill="#0B1B2B"/>
+  <text x="40" y="24" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#E6F7FF">Powered by</text>
+  <text x="110" y="24" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#2DD4BF">BuildrLab</text>
+</svg>
