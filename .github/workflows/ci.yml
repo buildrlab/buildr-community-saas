@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    env:
+      # Keep CI deterministic. Tests/builds should not rely on local .env files.
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_TEST_MODE: false
+      NEXT_PUBLIC_TEST_USER: ci-user
+      AWS_REGION: us-east-1
+      ALLOW_TEST_MODE: false
+      TEST_USER: ci-user
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build

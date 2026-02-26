@@ -24,5 +24,12 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
+  },
+  {
+    files: ['**/dev-server.ts'],
+    rules: {
+      // Dev-only tooling server; console output is acceptable here.
+      'no-console': 'off',
+    },
   }
 );

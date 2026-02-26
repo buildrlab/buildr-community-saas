@@ -64,6 +64,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`API dev server listening on http://localhost:${port}`);
 });
