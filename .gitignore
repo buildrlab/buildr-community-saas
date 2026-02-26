@@ -12,6 +12,11 @@ coverage
 dist
 *.tsbuildinfo
 
+# Playwright
+playwright-report
+**/playwright-report
+**/test-results
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
