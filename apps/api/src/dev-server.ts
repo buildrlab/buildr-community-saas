@@ -1,5 +1,6 @@
 import http from 'node:http';
 import { handler as healthHandler } from './handlers/health';
+import { handleMembersRequest } from './handlers/members';
 import { handleProjectsRequest } from './handlers/projects';
 import { normalizeHeaders } from './headers';
 
@@ -54,6 +55,29 @@ const server = http.createServer(async (req, res) => {
           if (!projectId) return undefined;
           return { projectId };
         })(),
+      });
+      send(res, payload as ResponsePayload);
+    });
+    return;
+  }
+
+  if (path.startsWith('/api/workspaces/')) {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+    req.on('end', async () => {
+      const queryStringParameters: Record<string, string> = {};
+      url.searchParams.forEach((value, key) => {
+        queryStringParameters[key] = value;
+      });
+      const payload = await handleMembersRequest({
+        method,
+        path,
+        headers,
+        body: body.length ? body : null,
+        requestId: 'local',
+        queryStringParameters: Object.keys(queryStringParameters).length ? queryStringParameters : null,
       });
       send(res, payload as ResponsePayload);
     });

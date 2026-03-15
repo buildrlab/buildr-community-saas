@@ -4,7 +4,7 @@ const baseHeaders = {
   'content-type': 'application/json',
   'access-control-allow-origin': '*',
   'access-control-allow-headers': 'authorization,content-type,x-test-user',
-  'access-control-allow-methods': 'GET,POST,DELETE,OPTIONS',
+  'access-control-allow-methods': 'GET,POST,PUT,DELETE,OPTIONS',
 };
 
 export const json = (statusCode: number, body: unknown): APIGatewayProxyResultV2 => ({

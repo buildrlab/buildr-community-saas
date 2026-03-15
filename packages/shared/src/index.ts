@@ -26,3 +26,45 @@ export const createProjectId = (): string => {
 export const normalizeName = (value: string): string => value.trim();
 
 export const isNonEmpty = (value: string): boolean => value.trim().length > 0;
+
+// ── Member types ──────────────────────────────────────────────────────
+
+export type MemberRole = 'owner' | 'admin' | 'member' | 'viewer';
+export type MemberStatus = 'active' | 'invited' | 'suspended';
+
+export type MemberProfile = {
+  userId: string;
+  email: string;
+  displayName: string;
+  avatarUrl?: string;
+  role: MemberRole;
+  status: MemberStatus;
+  joinedAt: string;
+  lastActiveAt?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  skills?: string[];
+  workspaceId: string;
+};
+
+export type MemberProfileUpdateInput = {
+  displayName?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  skills?: string[];
+};
+
+export type MemberRoleUpdateInput = {
+  role: MemberRole;
+};
+
+export type MemberInviteInput = {
+  email: string;
+  role?: MemberRole;
+};
+
+export const createMemberId = (): string => {
+  return crypto.randomUUID();
+};
