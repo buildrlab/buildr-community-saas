@@ -17,9 +17,9 @@
     "format": "pnpm -r format"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.39.4",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
+    "@typescript-eslint/parser": "^8.57.2",
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^2.1.2",
     "eslint": "^9.15.0",
@@ -28,7 +28,7 @@
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.17.0",
+    "typescript-eslint": "^8.57.2",
     "globals": "^15.14.0",
     "vitest": "^2.1.2"
   }
