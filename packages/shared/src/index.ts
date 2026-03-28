@@ -9,6 +9,34 @@ export type ProjectCreateInput = {
   name: string;
 };
 
+export interface MemberProfile {
+  userId: string;
+  displayName: string;
+  bio?: string;
+  avatarUrl?: string;
+  role: 'member' | 'admin' | 'moderator';
+  joinedAt: string;
+  projectCount: number;
+}
+
+export interface UpdateProfilePayload {
+  displayName?: string;
+  bio?: string;
+  avatarUrl?: string;
+}
+
+export type NotificationType = 'project_created' | 'project_deleted' | 'member_joined' | 'system';
+
+export interface Notification {
+  id: string;
+  userId: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: string;
+}
+
 export type ApiError = {
   message: string;
   requestId?: string;
