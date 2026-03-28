@@ -21,7 +21,7 @@
     "next": "^16.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^2.5.5",
+    "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
@@ -29,7 +29,7 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.3",
-    "jsdom": "^26.0.0",
+    "jsdom": "^29.0.1",
     "postcss": "^8.4.49"
   }
 }
