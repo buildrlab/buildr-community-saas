@@ -23,7 +23,7 @@
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^2.1.2",
     "eslint": "^9.15.0",
-    "eslint-config-next": "^16.0.0",
+    "eslint-config-next": "^16.2.1",
     "playwright": "^1.50.1",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
