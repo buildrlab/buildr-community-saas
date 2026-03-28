@@ -17,19 +17,19 @@
     "format": "pnpm -r format"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
     "@typescript-eslint/parser": "^8.57.2",
-    "@types/node": "^22.10.2",
-    "@vitest/coverage-v8": "^2.1.2",
-    "eslint": "^9.15.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^10.1.0",
     "eslint-config-next": "^16.2.1",
-    "playwright": "^1.50.1",
-    "prettier": "^3.4.2",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.17.0",
     "globals": "^17.4.0",
-    "vitest": "^2.1.2"
+    "playwright": "^1.58.2",
+    "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2",
+    "vitest": "^4.1.2"
   }
 }

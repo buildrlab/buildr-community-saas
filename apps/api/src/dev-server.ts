@@ -1,6 +1,8 @@
 import http from 'node:http';
 import { handler as healthHandler } from './handlers/health';
 import { handleProjectsRequest } from './handlers/projects';
+import { handleProfileRequest } from './handlers/profile';
+import { handleNotificationsRequest } from './handlers/notifications';
 import { normalizeHeaders } from './headers';
 
 type ResponsePayload = {
@@ -54,6 +56,38 @@ const server = http.createServer(async (req, res) => {
           if (!projectId) return undefined;
           return { projectId };
         })(),
+      });
+      send(res, payload as ResponsePayload);
+    });
+    return;
+  }
+
+  if (path === '/profile') {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', async () => {
+      const payload = await handleProfileRequest({
+        method,
+        path,
+        headers,
+        body: body.length ? body : null,
+        requestId: 'local',
+      });
+      send(res, payload as ResponsePayload);
+    });
+    return;
+  }
+
+  if (path === '/notifications' || path.startsWith('/notifications/')) {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', async () => {
+      const payload = await handleNotificationsRequest({
+        method,
+        path,
+        headers,
+        body: body.length ? body : null,
+        requestId: 'local',
       });
       send(res, payload as ResponsePayload);
     });
