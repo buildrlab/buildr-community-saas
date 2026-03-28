@@ -99,7 +99,11 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     path: event.rawPath ?? '/',
     headers,
     body: event.body,
-    pathParameters: event.pathParameters ?? null,
+    pathParameters: event.pathParameters
+      ? (Object.fromEntries(
+          Object.entries(event.pathParameters).filter((entry): entry is [string, string] => entry[1] !== undefined)
+        ) as Record<string, string>)
+      : null,
     requestId: event.requestContext.requestId,
   });
 };
