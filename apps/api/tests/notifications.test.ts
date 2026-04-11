@@ -1,16 +1,30 @@
-import { describe, it, expect } from 'vitest';
-import { handleNotificationsRequest } from '../src/handlers/notifications';
+import { describe, it, expect, beforeAll, beforeEach, vi } from 'vitest';
+
+process.env.ALLOW_TEST_MODE = 'true';
+
+type ApiResult = { statusCode: number; body?: string | null };
 
 const testHeaders = { 'x-test-user': 'test-user-notif' };
+
+let handleNotificationsRequest: typeof import('../src/handlers/notifications.js').handleNotificationsRequest;
+
+beforeAll(async () => {
+  vi.resetModules();
+  ({ handleNotificationsRequest } = await import('../src/handlers/notifications.js'));
+});
+
+beforeEach(() => {
+  process.env.ALLOW_TEST_MODE = 'true';
+});
 
 describe('handleNotificationsRequest', () => {
   describe('GET /notifications', () => {
     it('returns pre-seeded notifications for new user', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'GET',
         path: '/notifications',
         headers: testHeaders,
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(200);
       const body = JSON.parse(result.body ?? '{}');
       expect(Array.isArray(body.data)).toBe(true);
@@ -18,11 +32,11 @@ describe('handleNotificationsRequest', () => {
     });
 
     it('returns notifications with correct shape', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'GET',
         path: '/notifications',
         headers: testHeaders,
-      });
+      })) as ApiResult;
       const body = JSON.parse(result.body ?? '{}');
       const first = body.data[0];
       expect(typeof first.id).toBe('string');
@@ -31,22 +45,22 @@ describe('handleNotificationsRequest', () => {
     });
 
     it('returns 401 without auth', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'GET',
         path: '/notifications',
         headers: {},
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(401);
     });
   });
 
   describe('PUT /notifications/read-all', () => {
     it('marks all notifications as read', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'PUT',
         path: '/notifications/read-all',
         headers: testHeaders,
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(200);
       const body = JSON.parse(result.body ?? '{}');
       expect(Array.isArray(body.data)).toBe(true);
@@ -58,20 +72,19 @@ describe('handleNotificationsRequest', () => {
 
   describe('PUT /notifications/:id/read', () => {
     it('marks a specific notification as read', async () => {
-      // Get notifications first to find an ID
-      const listResult = await handleNotificationsRequest({
+      const listResult = (await handleNotificationsRequest({
         method: 'GET',
         path: '/notifications',
         headers: testHeaders,
-      });
+      })) as ApiResult;
       const { data } = JSON.parse(listResult.body ?? '{}');
       const id = data[0]?.id as string;
 
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'PUT',
         path: `/notifications/${id}/read`,
         headers: testHeaders,
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(200);
       const body = JSON.parse(result.body ?? '{}');
       expect(body.data.read).toBe(true);
@@ -79,22 +92,22 @@ describe('handleNotificationsRequest', () => {
     });
 
     it('returns 404 for non-existent notification', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'PUT',
         path: '/notifications/non-existent-id/read',
         headers: testHeaders,
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(404);
     });
   });
 
   describe('OPTIONS', () => {
     it('returns 204 for preflight', async () => {
-      const result = await handleNotificationsRequest({
+      const result = (await handleNotificationsRequest({
         method: 'OPTIONS',
         path: '/notifications',
         headers: {},
-      });
+      })) as ApiResult;
       expect(result.statusCode).toBe(204);
     });
   });
