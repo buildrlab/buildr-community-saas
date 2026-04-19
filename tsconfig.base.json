@@ -12,12 +12,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "paths": {
-      "@buildrlab/shared": ["packages/shared/dist/index.d.ts"],
-      "@buildrlab/shared/*": ["packages/shared/dist/*"]
+      "@buildrlab/shared": ["./packages/shared/dist/index.d.ts"],
+      "@buildrlab/shared/*": ["./packages/shared/dist/*"]
     }
   }
 }
